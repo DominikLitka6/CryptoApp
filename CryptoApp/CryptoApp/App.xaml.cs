@@ -1,11 +1,14 @@
-﻿namespace CryptoApp
+﻿using CryptoApp.Views;
+
+namespace CryptoApp
 {
     public partial class App : Application
     {
-        public App()
+        public App(MainPage mainPage)
         {
             InitializeComponent();
 
+            MainPage = mainPage;
             MainPage = new AppShell();
         }
     }
