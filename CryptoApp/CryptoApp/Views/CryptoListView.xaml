@@ -8,7 +8,7 @@
         <ListView ItemsSource="{Binding Maps}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Symbol}" />
+                    <TextCell Text="{Binding name}" Detail="{Binding symbol}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

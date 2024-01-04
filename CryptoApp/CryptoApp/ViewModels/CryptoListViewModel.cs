@@ -1,14 +1,9 @@
-﻿using CryptoApp.Models;
+﻿using CryptoApp.DTO;
 using CryptoApp.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.Maui.ApplicationModel.Permissions;
+using System.Windows.Input;
 
 namespace CryptoApp.ViewModels
 {
@@ -19,18 +14,29 @@ namespace CryptoApp.ViewModels
         public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         private readonly ICryptoApiService _cryptoApiService;
+        public ICommand DownloadDataCommand { get; private set; }
 
-        public ObservableCollection<CryptoMap> Maps { get; set; } = new ObservableCollection<CryptoMap>();
+        public ObservableCollection<CryptoData> Maps { get; set; } = new ObservableCollection<CryptoData>();
 
         public CryptoListViewModel(ICryptoApiService cryptoApiService)
         {
             _cryptoApiService = cryptoApiService;
-            var maps = _cryptoApiService.GetAllCryptoMap();
+
+            DownloadDataCommand = new Command(() => DownloadData());
           
-            foreach (var item in maps)
+        }
+
+        private void DownloadData()
+        {
+            Task.Run(async () =>
             {
-                Maps.Add(item);
-            }
+                var data = await _cryptoApiService.GetAllCryptoMapAsync();
+
+                for (int i = 0; i < 100; i++)
+                {
+                    Maps.Add(data[i]);
+                }
+            });
 
         }
     }

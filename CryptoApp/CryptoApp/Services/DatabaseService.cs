@@ -83,7 +83,7 @@ namespace CryptoApp.Services
                     Profit = -133.74d,
                     DailyChangeColor = colorCryptoGreen,
                     OverallProfitColor = colorCryptoRed,
-                    ArrowSymbol = arrowDown
+                    ArrowSymbol = arrowUp
                 }
             };
 

@@ -1,25 +1,23 @@
-﻿using CryptoApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CryptoApp.DTO;
+using Newtonsoft.Json;
 
 namespace CryptoApp.Services
 {
     public class CryptoApiService : ICryptoApiService
     {
-        public List<CryptoMap> GetAllCryptoMap()
+
+        public async Task<List<CryptoData>> GetAllCryptoMapAsync()
         {
-            var cryptoMap = new CryptoMap() { Name = "Bitcoin", Symbol = "BTC", Id = 1, Rank = 1 };
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://pro-api.coinmarketcap.com/v1/cryptocurrency/map");
+            request.Headers.Add("X-CMC_PRO_API_KEY", "d82de2b2-4fa9-427f-8883-ddd314a3c722");
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
 
-            var result = new List<CryptoMap>
-            {
-                cryptoMap
-            };
+            var result = await response.Content.ReadAsStringAsync();
+            Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(result);
+            return myDeserializedClass.data;
 
-            return result;
-                   
         }
     }
 }
