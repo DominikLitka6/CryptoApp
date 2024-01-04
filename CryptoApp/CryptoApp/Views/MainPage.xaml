@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:VM="clr-namespace:CryptoApp.ViewModels"
              x:Class="CryptoApp.Views.MainPage"
-             BackgroundColor="{DynamicResource PrimaryDark}"
-             x:DataType ="VM:MainPageViewModel">
-    <ScrollView>
+             BackgroundColor="{DynamicResource PrimaryDark}" >
         <VerticalStackLayout  Spacing="25">
 
 
@@ -22,7 +20,7 @@
                     FontSize="34"
                     TextColor="WhiteSmoke"
                     FontFamily="RubikSemiBold"
-                    Text="1544,64 zł"></Label>
+                    Text="2 885,63 zł"></Label>
                     
                 </HorizontalStackLayout>
                 <VerticalStackLayout Margin="10, 5">
@@ -36,7 +34,7 @@
                     HorizontalOptions="Center"
                     TextColor="WhiteSmoke"
                     FontFamily="RubikSemiBold"
-                    Text="864 zł"></Label>
+                    Text="2 861,74 zł"></Label>
                   
                     
                 </HorizontalStackLayout>
@@ -50,7 +48,7 @@
                     HorizontalOptions="Center"
                     TextColor="WhiteSmoke"
                     FontFamily="RubikSemiBold"
-                    Text="+367,66 zł"></Label>  <Label
+                    Text="+23,89 zł"></Label>  <Label
                     HorizontalOptions="Center"
                     TextColor="{DynamicResource CryptoGreen}"
                     Text="▲"></Label>
@@ -68,9 +66,9 @@
                         </Border.Shadow>
                         <VerticalStackLayout VerticalOptions="Center">
                             <Label Text="Profit" FontSize="Micro"></Label>
-                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -5, 0, 0">
-                                <Label Text="Solana" FontFamily="RubikMedium" FontSize="Medium"></Label>
-                                <Label Text=" +14,2%▲"  FontFamily="RubikSemiBold"  FontSize="Default" VerticalOptions="Center" Margin="0, 3, 0, 0" HorizontalOptions="EndAndExpand"></Label>
+                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, 0, 0, 0">
+                                <Label Text="Solana" FontFamily="RubikMedium" ></Label>
+                                <Label Text=" +57,12%▲"  FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="EndAndExpand"></Label>
                             </StackLayout>
                         </VerticalStackLayout>
                     </Border>
@@ -84,9 +82,9 @@
                         </Border.Shadow>
                         <VerticalStackLayout  VerticalOptions="Center">
                             <Label Text="Loss" FontSize="Micro"></Label>
-                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -5, 0, 0">
-                                <Label Text="Avalanche"  FontFamily="RubikMedium" FontSize="Medium"></Label>
-                                <Label Text="-45,8%▼"   FontFamily="RubikSemiBold" FontSize="Default" VerticalOptions="Center" Margin="0, 3, 0, 0" HorizontalOptions="EndAndExpand"></Label>
+                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, 0, 0, 0">
+                                <Label Text="Avalanche"  FontFamily="RubikMedium" ></Label>
+                                <Label Text="-46,83%▼"   FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="EndAndExpand"></Label>
                             </StackLayout>
                         </VerticalStackLayout>
                     </Border>
@@ -105,6 +103,44 @@
                      FontSize="32"
                      FontFamily="RubikSemiBold"
                      Text="Wallet"></Label>
+
+                    <ListView ItemsSource="{Binding CryptoList}" HeightRequest="420" RowHeight="75" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="5">
+                                    <Border Stroke="{DynamicResource Gray200Brush}" StrokeThickness="0.6"
+                                            StrokeShape="RoundRectangle 10,10,10,10"
+                                            BackgroundColor="White">
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black" Offset="4,6" Opacity="0.4" />
+                                        </Border.Shadow>
+                                        
+                                        <StackLayout Margin="10">
+
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="{Binding Image}" WidthRequest="40" HeightRequest="50"/>
+                                                <VerticalStackLayout Margin="10, 0">
+                                                <Label Text="{Binding Name}" FontFamily="RubikSemiBold" />
+                                                <Label Text="{Binding Symbol}" FontFamily="RubikRegular" />
+                                               
+                                                </VerticalStackLayout>
+                                                <HorizontalStackLayout Margin="10, 0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                    <Label Text="{Binding ArrowSymbol}" TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
+                                                    <Label Text="{Binding DailyChange}" TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
+                                                    <Label Text="%   " TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
+                                                    <Label Text="{Binding Profit}" TextColor="{Binding OverallProfitColor}" FontFamily="RubikMedium" />
+                                                </HorizontalStackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Border>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
                     <Button Margin="20"
                             BackgroundColor="{DynamicResource Tertiary}"
                             VerticalOptions="EndAndExpand"
@@ -116,6 +152,4 @@
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
-    </ScrollView>
-
 </ContentPage>

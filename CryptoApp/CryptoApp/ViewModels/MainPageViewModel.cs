@@ -1,7 +1,9 @@
 ﻿using CryptoApp.Services;
+using CryptoApp.Tables;
 using CryptoApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -22,10 +24,19 @@ namespace CryptoApp.ViewModels
 
         public ICommand AddNewCrypto { get; private set; }
 
+        public ObservableCollection<CryptoDetail> CryptoList { get; private set; }
+
         public MainPageViewModel(IDatabaseService databaseService, ICryptoApiService cryptoApiService)
         {
             _databaseService = databaseService;
             _cryptoApiService = cryptoApiService;
+            CryptoList = new ObservableCollection<CryptoDetail>();
+
+            var cryptoDetails = _databaseService.GetCryptoDetails();
+            foreach (var item in cryptoDetails)
+            {
+                CryptoList.Add(item);
+            }
 
             AddNewCrypto = new Command(() => { Shell.Current.GoToAsync(nameof(CryptoListView)); });
         }

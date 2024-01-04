@@ -13,5 +13,10 @@ namespace CryptoApp.Tables
         public required string Name { get; set; }
         public required string Symbol { get; set; }
         public required string Image { get; set; }
+        public double Profit { get; set; }
+        public double DailyChange { get; set; }
+        public required string DailyChangeColor { get; set; }
+        public required string OverallProfitColor { get; set; }
+        public required string ArrowSymbol { get; set; }
     }
 }
