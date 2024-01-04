@@ -3,16 +3,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:VM="clr-namespace:CryptoApp.ViewModels"
              x:Class="CryptoApp.Views.MainPage"
+             BackgroundColor="{DynamicResource PrimaryDark}"
              x:DataType ="VM:MainPageViewModel">
     <ScrollView>
-        <VerticalStackLayout
-            Padding="20,0"
-            Spacing="25">
-            <Button
-                x:Name="CounterBtn"
-                Text="Add new crypto" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Command="{Binding AddNewCrypto}" />
+        <VerticalStackLayout  Spacing="25">
+
+
+            <VerticalStackLayout HeightRequest="210"  HorizontalOptions="FillAndExpand"  Padding="10">
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 20, 0, 0">
+                <Label
+                    HorizontalOptions="Center"
+                    FontSize="34"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikSemiBold"
+                    Text="Balance: "></Label>
+                    <Label
+                    HorizontalOptions="Center"
+                    FontSize="34"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikSemiBold"
+                    Text="1544,64 zł"></Label>
+                    
+                </HorizontalStackLayout>
+                <VerticalStackLayout Margin="10, 5">
+                <HorizontalStackLayout HorizontalOptions="Start">
+                <Label
+                    HorizontalOptions="Center"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikRegular"
+                    Text="Total money invested: "></Label>
+                    <Label
+                    HorizontalOptions="Center"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikSemiBold"
+                    Text="864 zł"></Label>
+                  
+                    
+                </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Start">
+                <Label
+                    HorizontalOptions="Center"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikRegular"
+                    Text="Profit: "></Label>
+                    <Label
+                    HorizontalOptions="Center"
+                    TextColor="WhiteSmoke"
+                    FontFamily="RubikSemiBold"
+                    Text="+367,66 zł"></Label>  <Label
+                    HorizontalOptions="Center"
+                    TextColor="{DynamicResource CryptoGreen}"
+                    Text="▲"></Label>
+                    
+                </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <HorizontalStackLayout  Spacing="10" HorizontalOptions="Center" Margin="0, 20">
+                    <Border Stroke="{DynamicResource CryptoGreen}"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            BackgroundColor="{DynamicResource CryptoGreen}"
+                            Padding="10,4"
+                            HorizontalOptions="FillAndExpand">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                        </Border.Shadow>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="Profit" FontSize="Micro"></Label>
+                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -5, 0, 0">
+                                <Label Text="Solana" FontFamily="RubikMedium" FontSize="Medium"></Label>
+                                <Label Text=" +14,2%▲"  FontFamily="RubikSemiBold"  FontSize="Default" VerticalOptions="Center" Margin="0, 3, 0, 0" HorizontalOptions="EndAndExpand"></Label>
+                            </StackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Stroke="{DynamicResource CryptoRed}"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            BackgroundColor="{DynamicResource CryptoRed}"
+                            Padding="10,4"
+                            HorizontalOptions="FillAndExpand">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                        </Border.Shadow>
+                        <VerticalStackLayout  VerticalOptions="Center">
+                            <Label Text="Loss" FontSize="Micro"></Label>
+                            <StackLayout WidthRequest="160" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -5, 0, 0">
+                                <Label Text="Avalanche"  FontFamily="RubikMedium" FontSize="Medium"></Label>
+                                <Label Text="-45,8%▼"   FontFamily="RubikSemiBold" FontSize="Default" VerticalOptions="Center" Margin="0, 3, 0, 0" HorizontalOptions="EndAndExpand"></Label>
+                            </StackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            
+            <Border Stroke="{DynamicResource WhiteBrush}" Margin="-1"
+                    StrokeShape="RoundRectangle 40,40,0,0"
+                    BackgroundColor="{DynamicResource White}"
+                    Padding="16,8"
+                    HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout MinimumHeightRequest="800"  >
+                    <Label
+                     Margin="10, 0"       
+                     TextColor="{DynamicResource PrimaryDarkText}"
+                     FontSize="32"
+                     FontFamily="RubikSemiBold"
+                     Text="Wallet"></Label>
+                    <Button Margin="20"
+                            BackgroundColor="{DynamicResource Tertiary}"
+                            VerticalOptions="EndAndExpand"
+                            FontFamily="RubikSemiBold"
+                            TextColor="{DynamicResource PrimaryDarkText}" 
+                            Text="Add new" 
+                            SemanticProperties.Hint="Adds new crypto to list"
+                            Command="{Binding AddNewCrypto}" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

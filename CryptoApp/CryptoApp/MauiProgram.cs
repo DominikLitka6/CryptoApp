@@ -12,8 +12,20 @@ namespace CryptoApp
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Rubik-Regular.ttf", "RubikRegular");
+                    fonts.AddFont("Rubik-RegularItalic.ttf", "RubikRegularItalic");
+                    fonts.AddFont("Rubik-Medium.ttf", "RubikMedium");
+                    fonts.AddFont("Rubik-MediumItalic.ttf", "RubikMediumItalic");
+                    fonts.AddFont("Rubik-Light.ttf", "RubikLight");
+                    fonts.AddFont("Rubik-LightItalic.ttf", "RubikLightItalic");
+                    fonts.AddFont("Rubik-Black.ttf", "RubikBlack");
+                    fonts.AddFont("Rubik-BlackItalic.ttf", "RubikBlackItalic");
+                    fonts.AddFont("Rubik-Bold.ttf", "RubikBold");
+                    fonts.AddFont("Rubik-BoldItalic.ttf", "RubikBoldItalic");
+                    fonts.AddFont("Rubik-SemiBold.ttf", "RubikSemiBold");
+                    fonts.AddFont("Rubik-SemiBoldItalic.ttf", "RubikSemiBoldItalic");
+                    fonts.AddFont("Rubik-ExtraBold.ttf", "RubikExtraBold");
+                    fonts.AddFont("Rubik-ExtraBoldItalic.ttf", "RubikExtraBoldItalic");
                 })
                   .RegisterViewModels()
                   .RegisterAppServices()
@@ -47,6 +59,7 @@ namespace CryptoApp
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<ICryptoApiService, CryptoApiService>();
+            mauiAppBuilder.Services.AddSingleton<IDatabaseService, DatabaseService>();
             
             return mauiAppBuilder;
         }
