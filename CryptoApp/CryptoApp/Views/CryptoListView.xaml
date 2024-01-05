@@ -3,14 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CryptoApp.Views.CryptoListView"
              xmlns:VM="clr-namespace:CryptoApp.ViewModels"
-             Title="CryptoListView">
-    <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Maps}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding name}" Detail="{Binding symbol}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{DynamicResource PrimaryDark}">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"  IsVisible="{Binding IsBusy}" Color="{DynamicResource White}" />
+            <ListView ItemsSource="{Binding Maps}" Margin="5, 0" RowHeight="40" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="15, 3">
+                                <Border Stroke="{DynamicResource Gray200Brush}" StrokeThickness="0.6"
+                                        StrokeShape="RoundRectangle 10,10,10,10"
+                                        BackgroundColor="White">
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black" Offset="4,6" Opacity="0.4" />
+                                    </Border.Shadow>
+                                    <StackLayout Margin="10">
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Image Source="{Binding image}" WidthRequest="40" HeightRequest="50"/>
+                                            <VerticalStackLayout Margin="10, 0">
+                                                <Label Text="{Binding name}" FontFamily="RubikSemiBold" />
+                                                <Label Text="{Binding symbol}" FontFamily="RubikRegular" />
+                                            </VerticalStackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Border>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

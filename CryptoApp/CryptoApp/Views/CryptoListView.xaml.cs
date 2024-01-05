@@ -11,9 +11,10 @@ public partial class CryptoListView : ContentPage
 		BindingContext = VM = cryptoListViewModel;
 	}
 
-    protected override void OnSizeAllocated(double width, double height)
+    protected override void OnAppearing()
     {
-        base.OnSizeAllocated(width, height);
-		VM.DownloadDataCommand.Execute(null);
+        VM.DownloadDataCommand.Execute(null);
+        base.OnAppearing();
     }
+
 }

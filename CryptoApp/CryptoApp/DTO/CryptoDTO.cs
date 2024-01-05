@@ -19,6 +19,7 @@ namespace CryptoApp.DTO
         public DateTime first_historical_data { get; set; }
         public DateTime last_historical_data { get; set; }
         public Platform platform { get; set; }
+        public string image { get; set; }
     }
 
     public class Platform
