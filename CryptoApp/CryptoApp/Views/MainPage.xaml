@@ -104,7 +104,8 @@
                      FontFamily="RubikSemiBold"
                      Text="Wallet"></Label>
 
-                    <ListView ItemsSource="{Binding CryptoList}" HeightRequest="420" RowHeight="75" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+             
+                <ListView ItemsSource="{Binding CryptoList}" ItemSelected="ListView_ItemSelected" HeightRequest="420" RowHeight="75" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

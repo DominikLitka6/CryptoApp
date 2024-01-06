@@ -2,11 +2,161 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CryptoApp.Views.CryptoDetailsView"
-             Title="CryptoDetailsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Crypto details"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{DynamicResource PrimaryDark}" >
+    <VerticalStackLayout  Spacing="25">
+
+
+        <VerticalStackLayout HeightRequest="210"  HorizontalOptions="FillAndExpand"  Padding="10">
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 20, 0, 0">
+                <Image Source="{Binding CryptoInfo.Image}" WidthRequest="50" Margin="0, 0, 10, 0"/>
+                <Label
+              HorizontalOptions="Center"
+              FontSize="34"
+              TextColor="WhiteSmoke"
+              FontFamily="RubikSemiBold"
+              Text="{Binding CryptoInfo.Name}"></Label>
+
+            </HorizontalStackLayout>
+            <VerticalStackLayout Margin="0, 0, 0, 0">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label
+                        FontSize="26"
+              HorizontalOptions="Center"
+              TextColor="WhiteSmoke"
+              FontFamily="RubikMediumItalic"
+              Text="$ 48 261,74">
+                        <Label.Shadow>
+                            <Shadow Brush="Black" Offset="10,10" Opacity="0.7" />
+                            </Label.Shadow>
+                    </Label>
+                    
+                </HorizontalStackLayout>
+              
+            </VerticalStackLayout>
+
+          
+            <HorizontalStackLayout  Spacing="10" HorizontalOptions="Center" Margin="0,10">
+                <Border Stroke="{Binding CryptoInfo.CryptoChangeDayColor}"
+                      StrokeShape="RoundRectangle 80,80,80,80"
+                      BackgroundColor="{Binding CryptoInfo.CryptoChangeDayColor}"
+                     Padding="3"
+                      HorizontalOptions="FillAndExpand">
+                        <Border.Shadow>
+                        <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="70" HeightRequest="70">
+                        <Label Text="Day" FontSize="12"  HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 8"></Label>
+                        <Label Text="{Binding CryptoInfo.CryptoChangeDay,  StringFormat='{0:F2}%'}" FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Margin="0, -2"></Label>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Stroke="{Binding CryptoInfo.CryptoChangeWeekColor}"
+      StrokeShape="RoundRectangle 80,80,80,80"
+      BackgroundColor="{Binding CryptoInfo.CryptoChangeWeekColor}"
+     Padding="3"
+      HorizontalOptions="FillAndExpand">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="70" HeightRequest="70">
+                        <Label Text="Week" FontSize="12"  HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 8"></Label>
+                        <Label Text="{Binding CryptoInfo.CryptoChangeWeek,  StringFormat='{0:F2}%'}" FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Margin="0, -2"></Label>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Stroke="{Binding CryptoInfo.CryptoChangeMonthColor}"
+                      StrokeShape="RoundRectangle 80,80,80,80"
+                      BackgroundColor="{Binding CryptoInfo.CryptoChangeMonthColor}"
+                     Padding="3"
+                      HorizontalOptions="FillAndExpand">
+                        <Border.Shadow>
+                        <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="70" HeightRequest="70">
+                        <Label Text="Month" FontSize="12"  HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 8"></Label>
+                        <Label Text="{Binding CryptoInfo.CryptoChangeMonth,  StringFormat='{0:F2}%'}" FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Margin="0, -2"></Label>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Stroke="{Binding CryptoInfo.CryptoChangeYearColor}"
+                      StrokeShape="RoundRectangle 80,80,80,80"
+                      BackgroundColor="{Binding CryptoInfo.CryptoChangeYearColor}"
+                     Padding="3"
+                      HorizontalOptions="FillAndExpand">
+                        <Border.Shadow>
+                        <Shadow Brush="Black" Offset="5,5" Opacity="0.4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="70" HeightRequest="70">
+                        <Label Text="Year" FontSize="12"  HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 8"></Label>
+                        <Label Text="{Binding CryptoInfo.CryptoChangeYear,  StringFormat='{0:F2}%'}" FontFamily="RubikSemiBold"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Margin="0, -2"></Label>
+                    </VerticalStackLayout>
+                </Border>
+               
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <Border Stroke="{DynamicResource WhiteBrush}" Margin="-1"
+              StrokeShape="RoundRectangle 40,40,0,0"
+              BackgroundColor="{DynamicResource White}"
+              Padding="5,8"
+              HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout MinimumHeightRequest="800"  >
+                <Label
+               Margin="16, 0"       
+               TextColor="{DynamicResource PrimaryDarkText}"
+               FontSize="32"
+               FontFamily="RubikSemiBold"
+               Text="Positions"></Label>
+                <Line X1="0" Y1="0" X2="900" Y2="0" Stroke="{DynamicResource Gray600Brush}" />
+                <StackLayout Orientation="Horizontal" Padding="10, 10">
+                    <Label  Text="Volume" FontFamily="RubikMediumItalic" WidthRequest="70"></Label>
+                    <Label  Text="Buy price" FontFamily="RubikMediumItalic" WidthRequest="100"></Label>
+                    <Label  Text="Invested" FontFamily="RubikMediumItalic" ></Label>
+                    <Label Text="Profit" FontFamily="RubikMediumItalic" HorizontalOptions="EndAndExpand" Margin="0, 0, 5, 0"></Label>
+                </StackLayout>
+                
+                <ListView ItemsSource="{Binding Positions}"  RowHeight="75" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None" VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="5">
+                                    <Border Stroke="{DynamicResource Gray200Brush}" StrokeThickness="0.6"
+                                      StrokeShape="RoundRectangle 10,10,10,10"
+                                      BackgroundColor="White">
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black" Offset="4,6" Opacity="0.4" />
+                                        </Border.Shadow>
+
+                                        <StackLayout Padding="10">
+
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Label Text="{Binding Volume}" WidthRequest="60" FontFamily="RubikRegular" VerticalOptions="Center" />
+                                                <Label Text="{Binding CryptoBuyPrice,  StringFormat='${0:F2}'}"  WidthRequest="100"  FontFamily="RubikRegular" VerticalOptions="Center" />
+                                                <Label Text="{Binding MoneySpend,  StringFormat='{0:F2}zł'}"  FontFamily="RubikRegular" VerticalOptions="Center" />
+                                                <HorizontalStackLayout HorizontalOptions="EndAndExpand">
+                                                    <Label Text="{Binding ProfitPercent,  StringFormat='({0:F2}%)  '}"  TextColor="{Binding OverallProfitColor }" FontFamily="RubikRegular" VerticalOptions="Center" />
+                                                    <Label Text="{Binding Profit,  StringFormat=' {0:F2}zł'}"  FontFamily="RubikMedium" TextColor="{Binding OverallProfitColor }" VerticalOptions="Center" />
+                                                    
+                                                </HorizontalStackLayout>
+                                              
+                                               
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Border>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Button Margin="20"
+                      BackgroundColor="{DynamicResource Tertiary}"
+                      VerticalOptions="EndAndExpand"
+                      FontFamily="RubikSemiBold"
+                      TextColor="{DynamicResource PrimaryDarkText}" 
+                      Text="New position" 
+                      SemanticProperties.Hint="Adds new crypto to list"
+                      Command="{Binding AddNewCrypto}" />
+            </VerticalStackLayout>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

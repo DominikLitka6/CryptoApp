@@ -9,6 +9,7 @@ namespace CryptoApp.Services
 {
     public interface IDatabaseService
     {
-        List<CryptoDetail> GetCryptoDetails();
+        Task<List<Position>> GetPositions();
+        Task<List<Position>> GetPositions(string symbol);
     }
 }

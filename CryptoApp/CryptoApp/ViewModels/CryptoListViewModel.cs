@@ -1,5 +1,6 @@
 ﻿using CryptoApp.DTO;
 using CryptoApp.Services;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -18,21 +19,20 @@ namespace CryptoApp.ViewModels
         public ICommand DownloadDataCommand { get; private set; }
        
         private bool _isBusy;
-     
         public bool IsBusy
         {
-            get
-            {
-                return _isBusy;
-            }
-            private set
-            {
-                if (_isBusy != value)
-                {
-                    _isBusy = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBusy"));
-                }
-            }
+            set { SetProperty(ref _isBusy, value); }
+            get { return _isBusy; }
+        }
+
+        bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Object.Equals(storage, value))
+                return false;
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
 
         public ObservableCollection<CryptoData> Maps { get; set; } = new ObservableCollection<CryptoData>();
@@ -41,9 +41,10 @@ namespace CryptoApp.ViewModels
         {
             _cryptoApiService = cryptoApiService;
 
-            DownloadDataCommand = new Command(() => DownloadData());
-
+            DownloadDataCommand = new Command(DownloadData);
         }
+
+       
 
         private void DownloadData()
         {
