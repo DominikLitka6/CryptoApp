@@ -111,7 +111,8 @@ namespace CryptoApp.Services
                     CryptoChangeDayArrow = arrowDown,
                     CryptoChangeMonthArrow = arrowDown,
                     CryptoChangeWeekArrow = arrowDown,
-                    CryptoChangeYearArrow = arrowUp
+                    CryptoChangeYearArrow = arrowUp,
+                    Volume = 2
                 },
                 new()
                 {
@@ -134,7 +135,8 @@ namespace CryptoApp.Services
                     CryptoChangeDayArrow = arrowDown,
                     CryptoChangeMonthArrow = arrowDown,
                     CryptoChangeWeekArrow = arrowDown,
-                    CryptoChangeYearArrow = arrowUp
+                    CryptoChangeYearArrow = arrowUp,
+                    Volume = 10
 
                 },
                 new()
@@ -158,7 +160,8 @@ namespace CryptoApp.Services
                     CryptoChangeDayArrow = arrowDown,
                     CryptoChangeMonthArrow = arrowDown,
                     CryptoChangeWeekArrow = arrowDown,
-                    CryptoChangeYearArrow = arrowUp
+                    CryptoChangeYearArrow = arrowUp,
+                    Volume = 500
                 },
                 new()
                 {
@@ -178,6 +181,7 @@ namespace CryptoApp.Services
                     CryptoChangeMonthColor = colorCryptoRed,
                     CryptoChangeWeekColor = colorCryptoRed,
                     CryptoChangeYearColor = colorCryptoGreen,
+                    Volume = 3
                 }
             };
 
@@ -200,6 +204,43 @@ namespace CryptoApp.Services
             return result.Where(x => x.Symbol == symbol).ToList();
         }
 
+        public async Task<List<CryptoSummary>> GetCryptoSummary()
+        {
+            await Init();
 
+            List<CryptoSummary> result = new List<CryptoSummary>();
+
+            var dbTable = await Database.Table<Position>().ToListAsync();
+
+            List<string> symbols = new List<string>();
+
+            foreach (var item in dbTable)
+            {
+                if (!symbols.Contains(item.Symbol))
+                {
+                    symbols.Add(item.Symbol);
+                }
+            }
+
+            foreach (var item in symbols)
+            {
+                var positionsOfSymbol = dbTable.Where(x => x.Symbol == item);
+                var positionsTotalProfit = positionsOfSymbol.Sum(x => x.Profit);
+                var volumeTotal = positionsOfSymbol.Sum(x => x.Volume);
+                
+                result.Add(new CryptoSummary()
+                {
+                    Name = positionsOfSymbol.FirstOrDefault().Name,
+                    Symbol = item,
+                    AllPositionsProfit = positionsTotalProfit,
+                    Image = $"https://assets.coincap.io/assets/icons/{item.ToLower()}@2x.png",
+                    ChangeColor = positionsTotalProfit >= 0 ? colorCryptoGreen : colorCryptoRed,
+                    Volume = volumeTotal
+                });
+            }
+
+
+            return result;
+        }
     }
 }

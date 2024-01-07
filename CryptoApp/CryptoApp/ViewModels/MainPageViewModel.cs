@@ -24,32 +24,37 @@ namespace CryptoApp.ViewModels
 
         public ICommand AddNewCrypto { get; private set; }
 
-        public ObservableCollection<Position> CryptoList { get; private set; }
+        public ObservableCollection<CryptoSummary> CryptoList { get; private set; }
 
         public MainPageViewModel(IDatabaseService databaseService, ICryptoApiService cryptoApiService)
         {
             _databaseService = databaseService;
             _cryptoApiService = cryptoApiService;
-            CryptoList = new ObservableCollection<Position>();
+            CryptoList = new ObservableCollection<CryptoSummary>();
 
             AddNewCrypto = new Command(() => { Shell.Current.GoToAsync(nameof(CryptoListView)); });
         }
 
         public async Task LoadData()
         {
-            var cryptoDetails = await _databaseService.GetPositions();
+            var cryptoDetails = await _databaseService.GetCryptoSummary();
             foreach (var item in cryptoDetails)
             {
                 CryptoList.Add(item);
             }
         }
 
-        public void GoToDetail(Position detail)
+        public async Task<double> GetTotalProfitForCrypto(string symbol)
+        {
+            var cryptoDetails = await _databaseService.GetPositions(symbol);
+
+            return cryptoDetails.Sum(x => x.Profit);
+        }
+
+        public void GoToDetail(CryptoSummary detail)
         {
             var navigationParameter = new Dictionary<string, object> { { "CryptoSymbol", detail.Symbol } };
             Shell.Current.GoToAsync((nameof(CryptoDetailsView)), parameters: navigationParameter) ;
         }
-
-
     }
 }

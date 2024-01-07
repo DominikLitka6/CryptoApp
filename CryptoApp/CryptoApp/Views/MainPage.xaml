@@ -119,18 +119,15 @@
                                         
                                         <StackLayout Margin="10">
 
-                                            <StackLayout Orientation="Horizontal" >
+                                            <StackLayout Orientation="Horizontal">
                                                 <Image Source="{Binding Image}" WidthRequest="40" HeightRequest="50"/>
-                                                <VerticalStackLayout Margin="10, 0">
+                                                <VerticalStackLayout Margin="10, 0" WidthRequest="120">
                                                 <Label Text="{Binding Name}" FontFamily="RubikSemiBold" />
                                                 <Label Text="{Binding Symbol}" FontFamily="RubikRegular" />
-                                               
                                                 </VerticalStackLayout>
+                                                    <Label Text="{Binding Volume}" VerticalOptions="Center" FontFamily="RubikRegular" />
                                                 <HorizontalStackLayout Margin="10, 0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding ArrowSymbol}" TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
-                                                    <Label Text="{Binding DailyChange}" TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
-                                                    <Label Text="%   " TextColor="{Binding DailyChangeColor}" FontFamily="RubikMedium" />
-                                                    <Label Text="{Binding Profit}" TextColor="{Binding OverallProfitColor}" FontFamily="RubikMedium" />
+                                                    <Label Text="{Binding AllPositionsProfit, StringFormat=' {0:F2} zł'}" TextColor="{Binding ChangeColor}" FontFamily="RubikMedium" />
                                                 </HorizontalStackLayout>
                                             </StackLayout>
                                         </StackLayout>

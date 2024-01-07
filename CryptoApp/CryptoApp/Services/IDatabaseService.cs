@@ -11,5 +11,7 @@ namespace CryptoApp.Services
     {
         Task<List<Position>> GetPositions();
         Task<List<Position>> GetPositions(string symbol);
+        Task<List<CryptoSummary>> GetCryptoSummary();
+
     }
 }

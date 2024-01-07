@@ -40,6 +40,8 @@ namespace CryptoApp.Tables
         public DateTime BuyDate { get; set; }
         public double MoneySpend { get; set; }
 
+        public double AllPositionsProfit { get; set; }
+
 
     }
 }

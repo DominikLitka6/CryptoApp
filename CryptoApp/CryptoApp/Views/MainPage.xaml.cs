@@ -15,7 +15,7 @@ namespace CryptoApp.Views
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Position cryptoDetail = e.SelectedItem as Position;
+            CryptoSummary cryptoDetail = e.SelectedItem as CryptoSummary;
             VM.GoToDetail(cryptoDetail);
         }
 
